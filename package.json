@@ -1,0 +1,26 @@
+{
+  "name": "master-coding-interview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equis23/master-coding-interview.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/equis23/master-coding-interview/issues"
+  },
+  "homepage": "https://github.com/equis23/master-coding-interview#readme",
+  "dependencies": {
+    "jest": "^29.4.3"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

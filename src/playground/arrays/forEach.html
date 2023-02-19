@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>for each</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+  }
+</style>
+<body>
+  <div id="container"></div>
+  <script>
+    const tasks = [
+      { title: "Task 1", done: false },
+      { title: "Task 2", done: false },
+      { title: "Task 3", done: false },
+      { title: "Task 4", done: true },
+      { title: "Task 5", done: false },
+      { title: "Task 6", done: true },
+      { title: "Task 7", done: false },
+      { title: "Task 8", done: true },
+      { title: "Task 9", done: false },
+      { title: "Task 10", done: true }
+    ];
+
+    const elements = [];
+
+    tasks.forEach((task) => {
+      const li = document.createElement('li');
+      
+      const input = document.createElement('input');
+      input.setAttribute('type', 'checkbox');
+      input.setAttribute('id', task.title);
+      input.setAttribute('name', task.title);
+      input.checked = task.done;
+
+      const label = document.createElement('label');
+      label.setAttribute('for', task.title);
+      label.innerText = task.title;
+
+      li.style.listStyleType = 'none';
+      li.append(input);
+      li.append(label);
+
+      document.querySelector('#container').append(li);
+    });
+  </script>
+</body>
+</html>
