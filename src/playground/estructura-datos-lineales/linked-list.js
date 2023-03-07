@@ -16,36 +16,46 @@ class LinkedList {
     const node = new Node(value);
     node.next = this.head;
     this.head = node;
-    this.length++;
+    return ++this.length;
   }
 
   append(value) {
     const node = new Node(value);
     if (!this.head) {
       this.head = node;
-      this.length++;
     } else {
       let current = this.head;
       while (current.next) {
         current = current.next;
       }
       current.next = node;
-      node.prev = current;
-      this.length++;
+      node.previous = current;
     }
+    return ++this.length;
   }
 
   shift() {
     if (!this.head) return;
     this.head = this.head.next;
-    this.head.prev = null;
-    this.length--;
+    this.head.previous = null;
+    return --this.length;
   }
 
-  pop() {}
+  pop() {
+    if (!this.head) return;
+    if (!this.head.next) this.head = null;
+    else {
+      let current = this.head;
+      while (current.next) {
+        current = current.next;
+      }
+      current.previous.next = null;
+    }
+    return --this.length;
+  }
 
   getAt(index) {
-    if (index >= 0 || index < this.length) {
+    if (index >= 0 && index < this.length) {
       let current = this.head;
       while (index > 0) {
         current = current.next;
@@ -56,19 +66,44 @@ class LinkedList {
     return;
   }
 
+  deleleAt(index) {
+    if (index === 0) this.shift();
+    else if (index === this.length - 1) this.pop();
+    else if (index >= 0 && index < this.length) {
+      let current = this.getAt(index);
+      current.previous.next = current.next;
+      return --this.length;
+    }
+  }
+
   clear() {
     this.head = null;
     this.length = 0;
+  }
+
+  reverse() {
+    if (!this.head) return;
+    let current = this.head;
+    let prev;
+    let next;
+    while (current) {
+      next = current.next;
+      current.next = prev;
+      current.previous = next;
+      prev = current;
+      current = next;
+    }
+    this.head = prev;
   }
 
   display() {
     let str = '';
     let current = this.head;
     while (current) {
-      str += `[ ${current} ] -->`;
+      str += `[ ${current.value} ]-->`;
       current = current.next;
     }
-    return str.trimEnd(' -->');
+    return str.substring(0, str.length - 3);
   }
 
   toList() {
@@ -81,5 +116,3 @@ class LinkedList {
     return list;
   }
 }
-
-module.exports = LinkedList;
