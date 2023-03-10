@@ -54,6 +54,38 @@ class LinkedList {
     odd.next = even_head;
   }
 
+  cycleList() {
+    let slow = this.head;
+    let fast = this.head;
+    while (fast && fast.next) {
+      slow = slow.next;
+      fast = fast.next.next;
+      if (slow === fast) return true;
+    }
+    return false;
+  }
+
+  cycleListII() {
+    let slow = this.head;
+    let fast = this.head;
+    let hasCycled = false;
+    while (fast && fast.next) {
+      slow = slow.next;
+      fast = fast.next.next;
+      if (slow === fast) {
+        hasCycled = true;
+        break;
+      }
+    }
+    if (!hasCycled) return null;
+    slow = this.head;
+    while (slow !== fast) {
+      slow = slow.next;
+      fast = fast.next;
+    }
+    return slow;
+  }
+
   display() {
     let current = this.head;
     let str = '';
