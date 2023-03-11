@@ -86,6 +86,21 @@ class LinkedList {
     return slow;
   }
 
+  getRandom() {
+    let current = this.head;
+    let count = 0;
+    while (current) {
+      current = current.next;
+      count++;
+    }
+    const randomIndex = Math.floor(Math.random() * count);
+    current = this.head;
+    for (let i = 0; i < count; i++) {
+      current = current.next;
+    }
+    return current;
+  }
+
   display() {
     let current = this.head;
     let str = '';

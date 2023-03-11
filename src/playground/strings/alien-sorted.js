@@ -14,8 +14,9 @@ const isAlienSorted = (words, order) => {
         } else {
           break;
         }
+      } else {
+        j++;
       }
-      j++;
     }
     if (j === next.length && j < current.length) {
       return false;
